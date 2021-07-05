@@ -7,19 +7,24 @@ public class Tank : MonoBehaviour
     
     [Tooltip("Determines how fast tank rotates left and right around it's axis")]
     [SerializeField] private float rotateSpeed = 360;
+
+    [Tooltip("Drag here tank rigidbody reference")]
+    [SerializeField] private Rigidbody rigidbody;
     
-    void Update()
+    void FixedUpdate()
     {
         // Samples input that corresponds to vertical axi, up down arrows on keyboard
         var moveInput = Input.GetAxis("Vertical");
         
         // Move in the direction that tank is facing
-        var moveDistance = Time.deltaTime * moveSpeed * moveInput;
-        transform.position += moveDistance * transform.forward;
+        var moveDistance = Time.fixedDeltaTime * moveSpeed * moveInput;
+        var newPos = transform.position + moveDistance * transform.forward;
+        rigidbody.MovePosition(newPos);
 
         // Rotate tank around it's up axis
         var rotateInput = Input.GetAxis("Horizontal");
-        var rotateDistance = new Vector3(0, Time.deltaTime * rotateSpeed * rotateInput, 0);
-        transform.Rotate(rotateDistance, Space.Self);
+        var rotateDistance = new Vector3(0, Time.fixedDeltaTime * rotateSpeed * rotateInput, 0);
+        var newRot = Quaternion.Euler(rotateDistance) * transform.rotation;
+        rigidbody.MoveRotation(newRot);
     }
 }
