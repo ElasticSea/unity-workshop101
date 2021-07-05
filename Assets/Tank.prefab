@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotateSpeed: 360
+  rigidbody: {fileID: 1041903292454106241}
 --- !u!65 &1631879542284588854
 BoxCollider:
   m_ObjectHideFlags: 0
