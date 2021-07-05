@@ -11,6 +11,7 @@ public class Tank : MonoBehaviour
         var moveInput = Input.GetAxis("Vertical");
         
         // Move in the direction that tank is facing
-        transform.position += Time.deltaTime * moveSpeed * moveInput * transform.forward;
+        var moveDistance = Time.deltaTime * moveSpeed * moveInput;
+        transform.position += moveDistance * transform.forward;
     }
 }
