@@ -7,7 +7,10 @@ public class Tank : MonoBehaviour
     
     void Update()
     {
+        // Samples input that corresponds to vertical axi, up down arrows on keyboard
+        var moveInput = Input.GetAxis("Vertical");
+        
         // Move in the direction that tank is facing
-        transform.position += Time.deltaTime * moveSpeed * transform.forward;
+        transform.position += Time.deltaTime * moveSpeed * moveInput * transform.forward;
     }
 }
