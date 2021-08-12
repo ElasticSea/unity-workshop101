@@ -17,8 +17,8 @@ public class Tank : MonoBehaviour
         var moveInput = Input.GetAxis("Vertical");
         
         // Move in the direction that tank is facing
-        var moveDistance = Time.fixedDeltaTime * moveSpeed * moveInput;
-        var newPos = transform.position + moveDistance * transform.forward;
+        var moveDistance = Time.fixedDeltaTime * moveSpeed * 1;
+        var newPos = rigidbody.position + moveDistance * transform.forward;
         rigidbody.MovePosition(newPos);
 
         // Rotate tank around it's up axis
